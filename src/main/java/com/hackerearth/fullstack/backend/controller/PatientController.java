@@ -28,7 +28,7 @@ import com.hackerearth.fullstack.backend.repository.PatientRepository;
 
 @RestController
 @RequestMapping("/api/patients")
-@CrossOrigin(origins = "http://localhost:3000", allowedHeaders = "*", exposedHeaders = {"Access-Control-Allow-Origin"}, methods  = {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
+@CrossOrigin(origins = "*", allowedHeaders = "*", exposedHeaders = {"Access-Control-Allow-Origin"}, methods  = {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
 public class PatientController {
 
     private static final String DOCTOR_SERVICE_URL = "http://localhost:9090/api/doctors/";
