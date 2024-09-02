@@ -51,16 +51,15 @@ public class PatientController {
     	
     	Long doctorId = patient.getDoctorId();
     	try {
+
+		
+		String SystemName = InetAddress.getLocalHost().getHostName();
+		logger.info("in createPatient & System Name : ------>"+ SystemName);
+		 
     		DoctorDTO doctor = restTemplate.getForObject(DOCTOR_SERVICE_URL+doctorId,DoctorDTO.class);
         	
         	Patient savedPatient = null;
-		try {
-		String SystemName = InetAddress.getLocalHost().getHostName();
-		logger.info("in createPatient & System Name : ------>"+ SystemName);
-		 }
-       		 catch (Exception E) {
-           	 System.err.println(E.getMessage());
-        	}
+		
         	if(doctor != null) {
         		savedPatient = patientRepository.save(patient);
             	
@@ -72,6 +71,9 @@ public class PatientController {
 			throw new IllegalArgumentException("Doctor with ID "+doctorId+" not found.");
 			
 		}
+       		 catch (Exception E) {
+           	 System.err.println(E.getMessage());
+        	}
     		
     }
 
