@@ -29,6 +29,10 @@ import com.hackerearth.fullstack.backend.repository.PatientRepository;
 import java.net.InetAddress;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import javax.servlet.http.HttpServletRequest
+
+
 
 @RestController
 @RequestMapping("/api/patients")
@@ -148,8 +152,13 @@ public class PatientController {
     @GetMapping("/doctor/{doctorName}")
     public ResponseEntity<List<Patient>> getPatientsByDoctorName(@PathVariable String doctorName) {
 	try {
+		String baseUrl = ServletUriComponentsBuilder.fromRequestUri(HttpServletRequest request)
+        .replacePath(null)
+        .build()
+        .toUriString();
         String SystemName = InetAddress.getLocalHost().getHostName();
 		logger.info("in getPatientsByDoctorName & System Name : ------>"+ SystemName);
+		logger.info("in getPatientsByDoctorName & baseUrl : ------>"+ baseUrl);
 	 }
         catch (Exception E) {
             System.err.println(E.getMessage());
