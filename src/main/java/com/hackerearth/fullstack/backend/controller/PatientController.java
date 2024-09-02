@@ -50,8 +50,13 @@ public class PatientController {
     		DoctorDTO doctor = restTemplate.getForObject(DOCTOR_SERVICE_URL+doctorId,DoctorDTO.class);
         	
         	Patient savedPatient = null;
+		try {
 		String SystemName = InetAddress.getLocalHost().getHostName();
 		System.out.println("in createPatient & System Name : "+ SystemName);
+		 }
+       		 catch (Exception E) {
+           	 System.err.println(E.getMessage());
+        	}
         	if(doctor != null) {
         		savedPatient = patientRepository.save(patient);
             	
@@ -136,8 +141,13 @@ public class PatientController {
 
     @GetMapping("/doctor/{doctorName}")
     public ResponseEntity<List<Patient>> getPatientsByDoctorName(@PathVariable String doctorName) {
+	try {
         String SystemName = InetAddress.getLocalHost().getHostName();
 		System.out.println("in getPatientsByDoctorName & System Name : "+ SystemName);
+	 }
+        catch (Exception E) {
+            System.err.println(E.getMessage());
+        }
     	
     	DoctorDTO[] doctors = restTemplate.getForObject(DOCTOR_SERVICE_URL+"searchByName?name="+doctorName, DoctorDTO[].class);
     	
