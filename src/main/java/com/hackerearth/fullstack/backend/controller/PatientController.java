@@ -74,9 +74,8 @@ public class PatientController {
 		} catch (HttpClientErrorException.NotFound e) {
 			throw new IllegalArgumentException("Doctor with ID "+doctorId+" not found.");
 			
-		}
-       		 catch (Exception E) {
-           	 System.err.println(E.getMessage());
+		}catch (Exception E) {
+           	 throw new Exception("Internal server error");
         	}
     		
     }
