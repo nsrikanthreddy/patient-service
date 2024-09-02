@@ -27,12 +27,16 @@ import com.hackerearth.fullstack.backend.model.Patient;
 import com.hackerearth.fullstack.backend.repository.PatientRepository;
 
 import java.net.InetAddress;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @RestController
 @RequestMapping("/api/patients")
 @CrossOrigin(origins = "*", allowedHeaders = "*", exposedHeaders = {"Access-Control-Allow-Origin"}, methods  = {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
 public class PatientController {
 
+    Logger logger= LoggerFactory.getLogger(PatientController.class);
+	
     private static final String DOCTOR_SERVICE_URL = "http://localhost:9090/api/doctors/";
 
     @Autowired
@@ -52,7 +56,7 @@ public class PatientController {
         	Patient savedPatient = null;
 		try {
 		String SystemName = InetAddress.getLocalHost().getHostName();
-		System.out.println("in createPatient & System Name : "+ SystemName);
+		logger.info("in createPatient & System Name : ------>"+ SystemName);
 		 }
        		 catch (Exception E) {
            	 System.err.println(E.getMessage());
@@ -143,7 +147,7 @@ public class PatientController {
     public ResponseEntity<List<Patient>> getPatientsByDoctorName(@PathVariable String doctorName) {
 	try {
         String SystemName = InetAddress.getLocalHost().getHostName();
-		System.out.println("in getPatientsByDoctorName & System Name : "+ SystemName);
+		logger.info("in getPatientsByDoctorName & System Name : ------>"+ SystemName);
 	 }
         catch (Exception E) {
             System.err.println(E.getMessage());
