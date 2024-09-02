@@ -71,12 +71,10 @@ public class PatientController {
         	}else {
         		throw new IllegalArgumentException("Doctor with ID "+doctorId+" not found.");
         	}
-		} catch (HttpClientErrorException.NotFound e) {
+		} catch (HttpClientErrorException.NotFound e, Exception e1) {
 			throw new IllegalArgumentException("Doctor with ID "+doctorId+" not found.");
 			
-		}catch (Exception e1) {
-           	 logger.info("Internal server error");
-        	}
+		}
     		
     }
 
