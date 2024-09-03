@@ -156,15 +156,10 @@ public class PatientController {
 
     @GetMapping("/doctor/{doctorName}")
     public ResponseEntity<List<Patient>> getPatientsByDoctorName(@PathVariable String doctorName) {
-	try {
+	
 		String baseUrl = ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString();
-        String SystemName = InetAddress.getLocalHost().getHostName();
-		logger.info("in getPatientsByDoctorName & System Name : ------>"+ SystemName);
-		logger.info("in getPatientsByDoctorName & baseUrl : ------>"+ baseUrl);
-	 }
-        catch (Exception E) {
-            System.err.println(E.getMessage());
-        }
+        	logger.info("in getPatientsByDoctorName & baseUrl : ------>"+ baseUrl);
+  
     	
     	//DoctorDTO[] doctors = restTemplate.getForObject(DOCTOR_SERVICE_URL+"searchByName?name="+doctorName, DoctorDTO[].class);
     	baseUrl=baseUrl.replace("9091","9090");
