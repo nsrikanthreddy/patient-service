@@ -147,9 +147,9 @@ public class PatientController {
     }
 
     @GetMapping("/doctor/{doctorName}")
-    public ResponseEntity<List<Patient>> getPatientsByDoctorName(@PathVariable String doctorName, HttpServletRequest request) {
+    public ResponseEntity<List<Patient>> getPatientsByDoctorName(@PathVariable String doctorName) {
 	try {
-		String baseUrl = ServletUriComponentsBuilder.fromRequestUri(request).replacePath(null).build().toUriString();
+		String baseUrl = ServletUriComponentsBuilder.fromRequestUri(HttpServletRequest request).replacePath(null).build().toUriString();
         String SystemName = InetAddress.getLocalHost().getHostName();
 		logger.info("in getPatientsByDoctorName & System Name : ------>"+ SystemName);
 		logger.info("in getPatientsByDoctorName & baseUrl : ------>"+ baseUrl);
