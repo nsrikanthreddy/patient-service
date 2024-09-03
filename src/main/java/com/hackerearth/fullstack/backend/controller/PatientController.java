@@ -61,6 +61,7 @@ public class PatientController {
 		logger.info("in createPatient & System Name : ------>"+ SystemName);*/
 		String baseUrl = ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString();
 		baseUrl=baseUrl.replace("9091","9090");
+		baseUrl=baseUrl.replace("http:","https:");
 		DoctorDTO doctor = restTemplate.getForObject(baseUrl+"/api/doctors/"+doctorId,DoctorDTO.class);
         	
     		//DoctorDTO doctor = restTemplate.getForObject(DOCTOR_SERVICE_URL+doctorId,DoctorDTO.class);
@@ -105,6 +106,7 @@ public class PatientController {
 
 		String baseUrl = ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString();
 		baseUrl=baseUrl.replace("9091","9090");
+		baseUrl=baseUrl.replace("http:","https:");
 		DoctorDTO doctor = restTemplate.getForObject(baseUrl+"/api/doctors/"+doctorId,DoctorDTO.class);
         	
     		//DoctorDTO doctor = restTemplate.getForObject(DOCTOR_SERVICE_URL+doctorId, DoctorDTO.class);
@@ -163,6 +165,7 @@ public class PatientController {
     	
     	//DoctorDTO[] doctors = restTemplate.getForObject(DOCTOR_SERVICE_URL+"searchByName?name="+doctorName, DoctorDTO[].class);
     	baseUrl=baseUrl.replace("9091","9090");
+	    baseUrl=baseUrl.replace("http:","https:");
 	 DoctorDTO[] doctors = restTemplate.getForObject(baseUrl+"/api/doctors/searchByName?name="+doctorName, DoctorDTO[].class);
     	
     	if(doctors ==null) {
