@@ -160,12 +160,13 @@ public class PatientController {
     public ResponseEntity<List<Patient>> getPatientsByDoctorName(@PathVariable String doctorName) {
 	
 		String baseUrl = ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString();
-        	logger.info("in getPatientsByDoctorName & baseUrl : ------>"+ baseUrl);
-  
+        	
     	
     	//DoctorDTO[] doctors = restTemplate.getForObject(DOCTOR_SERVICE_URL+"searchByName?name="+doctorName, DoctorDTO[].class);
     	baseUrl=baseUrl.replace("9091","9090");
 	    baseUrl=baseUrl.replace("http:","https:");
+	    logger.info("in getPatientsByDoctorName & baseUrl : ------>"+ baseUrl);
+  
 	 DoctorDTO[] doctors = restTemplate.getForObject(baseUrl+"/api/doctors/searchByName?name="+doctorName, DoctorDTO[].class);
     	
     	if(doctors ==null) {
