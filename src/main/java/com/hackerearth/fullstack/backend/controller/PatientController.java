@@ -57,8 +57,8 @@ public class PatientController {
     	try {
 
 		
-		String SystemName = InetAddress.getLocalHost().getHostName();
-		logger.info("in createPatient & System Name : ------>"+ SystemName);
+		/*String SystemName = InetAddress.getLocalHost().getHostName();
+		logger.info("in createPatient & System Name : ------>"+ SystemName);*/
 		 
     		DoctorDTO doctor = restTemplate.getForObject(DOCTOR_SERVICE_URL+doctorId,DoctorDTO.class);
         	
@@ -71,7 +71,7 @@ public class PatientController {
         	}else {
         		throw new IllegalArgumentException("Doctor with ID "+doctorId+" not found.");
         	}
-		} catch (HttpClientErrorException.NotFound e, Exception e1) {
+		} catch (HttpClientErrorException.NotFound e) {
 			throw new IllegalArgumentException("Doctor with ID "+doctorId+" not found.");
 			
 		}
