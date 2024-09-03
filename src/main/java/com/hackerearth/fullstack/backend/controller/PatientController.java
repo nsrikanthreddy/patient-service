@@ -59,8 +59,11 @@ public class PatientController {
 		
 		/*String SystemName = InetAddress.getLocalHost().getHostName();
 		logger.info("in createPatient & System Name : ------>"+ SystemName);*/
-		 
-    		DoctorDTO doctor = restTemplate.getForObject(DOCTOR_SERVICE_URL+doctorId,DoctorDTO.class);
+		String baseUrl = ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString();
+		baseUrl=baseUrl.replace("9091","9090");
+		DoctorDTO doctor = restTemplate.getForObject(baseUrl+"/api/doctors/"+doctorId,DoctorDTO.class);
+        	
+    		//DoctorDTO doctor = restTemplate.getForObject(DOCTOR_SERVICE_URL+doctorId,DoctorDTO.class);
         	
         	Patient savedPatient = null;
 		
@@ -99,7 +102,12 @@ public class PatientController {
     	
     	Long doctorId = updatedPatient.getDoctorId();
     	try {
-    		DoctorDTO doctor = restTemplate.getForObject(DOCTOR_SERVICE_URL+doctorId, DoctorDTO.class);
+
+		String baseUrl = ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString();
+		baseUrl=baseUrl.replace("9091","9090");
+		DoctorDTO doctor = restTemplate.getForObject(baseUrl+"/api/doctors/"+doctorId,DoctorDTO.class);
+        	
+    		//DoctorDTO doctor = restTemplate.getForObject(DOCTOR_SERVICE_URL+doctorId, DoctorDTO.class);
         	if(doctor!=null && doctor.getId() == updatedPatient.getDoctorId()){
         		Patient existedPatientObj=patient.get();
         		existedPatientObj.setName(updatedPatient.getName());
@@ -158,7 +166,9 @@ public class PatientController {
             System.err.println(E.getMessage());
         }
     	
-    	DoctorDTO[] doctors = restTemplate.getForObject(DOCTOR_SERVICE_URL+"searchByName?name="+doctorName, DoctorDTO[].class);
+    	//DoctorDTO[] doctors = restTemplate.getForObject(DOCTOR_SERVICE_URL+"searchByName?name="+doctorName, DoctorDTO[].class);
+    	baseUrl=baseUrl.replace("9091","9090");
+	 DoctorDTO[] doctors = restTemplate.getForObject(baseUrl+"/api/doctors/searchByName?name="+doctorName, DoctorDTO[].class);
     	
     	if(doctors ==null) {
     		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
