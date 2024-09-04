@@ -63,8 +63,9 @@ public class PatientController {
 		String baseUrl = ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString();
 		baseUrl=baseUrl.replace("9091","9090");
 		baseUrl=baseUrl.replace("http:","https:");
+		logger.info("in getPatientsByDoctorName & baseUrl : ------>"+ baseUrl);
 		DoctorDTO doctor = restTemplate.getForObject(baseUrl+"/api/doctors/"+doctorId,DoctorDTO.class);
-        	
+        	logger.info("doctor : ------>"+ doctor);
     		//DoctorDTO doctor = restTemplate.getForObject(DOCTOR_SERVICE_URL+doctorId,DoctorDTO.class);
         	
         	Patient savedPatient = null;
